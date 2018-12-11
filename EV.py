@@ -1,20 +1,22 @@
 import re
-addressToVerify = input("Enter e-mail: ")# "fusion_mos@yahoo.com" #checking the address
-match = re.match('^[a-z0-9-]+(\.[a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$',addressToVerify)
 
-if match == None :
+address = input("Enter an E-mail address: ") #"abir.roy@northsouth.edu" #checking the address
+username, domain_name = address.split("@")
+grammar = re.match('^[a-z0-9_]+(\.[a-z0-9_]+)*@[a-z0-9_]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$',address)
+
+if grammar == None :
     print('Invalid Input')
     raise ValueError('Bad Syntax')
 
 import dns.resolver
-records = dns.resolver.query('gmail.com','MX')
+records = dns.resolver.query(domain_name,'MX')
 mxRecord = records[0].exchange
 mxRecord = str(mxRecord)
 
 import socket 
 import smtplib
 
-#Get local server hostname
+#local server hostname 
 host = socket.gethostname()
 
 #SMTP lib setup (use debug level for full output)
@@ -22,14 +24,14 @@ host = socket.gethostname()
 server = smtplib.SMTP(0)
 server.set_debuglevel(0)
 
+#SMTP Convrsation
 
+if grammar:
 
-if (match):
-    #SMTP Convrsation
     server.connect(mxRecord)
     server.helo(host)
     server.mail('me@domain.com')
-    code, message = server.rcpt(str(addressToVerify))
+    code,message = server.rcpt(str(address))
     server.quit()
 
 #ASSUME 250 AS SUCCESS
