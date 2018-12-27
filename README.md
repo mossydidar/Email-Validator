@@ -1,6 +1,10 @@
-# email-verification-module
-Repository for sharing group project files. 
-CSE482 Group Project. 
+The project is based on a fully software-based module that checks whether a given list of emails are
+Valid or not. The whole project is written in Python language (version – 3.6.7). The given list of
+emails are placed on a .txt file and are fed into the program through as the overall atomic ‘Input’ (nondynamic). The program takes the emails as input and iterates through each email, checking whether
+the given emails are valid or not. The program uses various Python Libraries to match the emails,
+open Sockets and SMTP conversations to pull out MX records and finally give the output on the given
+list of emails as Valid or Invalid depending on some circumstances. The program runs on the terminal
+and also delivers the ‘OUTPUT’ at the end of the Terminal.
 Supervisor/Instructor: Mohammed Ashrafuzzaman Khan
 
 Group members:
