@@ -1,3 +1,6 @@
+##################    Email-Validator   #######################
+##########   CSE482: Internet and Web Technology  #############
+
 import re
 import string
 import random
